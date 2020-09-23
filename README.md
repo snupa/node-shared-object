@@ -6,7 +6,7 @@ objects between worker threads or process forks.
 ### Installation
 
 ```bash
-npm install -s shared-object
+npm install -s shared-space
 ```
 
 > This library requires node version > 12.x
@@ -17,7 +17,7 @@ npm install -s shared-object
 // Main thread (main.js)
 const { Worker } = require('worker_threads');
 const path = require('path');
-const SharedObject = require('shared-object');
+const SharedObject = require('shared-space');
 const myObject = new SharedObject({
  initial: 'data'
 });
@@ -34,7 +34,7 @@ setTimeout(() => {
 }, 100);
 
 // Worker thread (worker.js)
-const SharedObject = require('shared-object');
+const SharedObject = require('shared-space');
 const myObject = new SharedObject();
 // Retrieve its data
 console.log(myObject.get('initial'));   // prints 'data'
@@ -46,7 +46,7 @@ myObject.set('my.inner.key', 'worker');
 
 ```javascript
 const cluster = require('cluster');
-const SharedObject = require('shared-object');
+const SharedObject = require('shared-space');
 if(cluster.isMaster) {
     // Initiate main shared object only in master process
     let myObject = new SharedObject({
@@ -80,6 +80,9 @@ and merging the main data object.
 Internally, when used with `threads`, it serializes the data using `bson` and sends/receives Uint8Array objects between workers.
 However, when used with the `cluster` module, it sends direct objects between workers.
 Synchronisation is performed between all threads/processes (worker and main), with the `last-update-wins` scenario.
+
+When used with `threads`, the synchronisation process is performed synchronously, while used in `cluster` mode, it is performed asynchronously (using `process.send`)
+
 
 ### API
 

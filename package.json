@@ -1,7 +1,7 @@
 {
-  "name": "shared-object",
+  "name": "shared-space",
   "author": "UNLOQ Systems",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "dependencies": {
     "bson": "4.1.0",
     "dot-object": "2.1.4"
@@ -11,12 +11,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/snupa/node-shared-object"
+    "url": "https://github.com/snupa/node-shared-space"
   },
   "engines": {
     "node": ">= 12.10.0"
   },
   "bugs": {
-    "url": "https://github.com/snupa/node-shared-object/issues"
+    "url": "https://github.com/snupa/node-shared-space/issues"
   }
 }
