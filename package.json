@@ -1,0 +1,22 @@
+{
+  "name": "shared-object",
+  "author": "UNLOQ Systems",
+  "version": "0.5.0",
+  "dependencies": {
+    "bson": "4.1.0",
+    "dot-object": "2.1.4"
+  },
+  "description": "Node.js shared object interface for cluster workers and thread workers",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snupa/node-shared-object"
+  },
+  "engines": {
+    "node": ">= 12.10.0"
+  },
+  "bugs": {
+    "url": "https://github.com/snupa/node-shared-object/issues"
+  }
+}
