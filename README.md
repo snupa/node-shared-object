@@ -17,7 +17,7 @@ npm install -s shared-space
 // Main thread (main.js)
 const { Worker } = require('worker_threads');
 const path = require('path');
-const SharedObject = require('shared-space');
+const { SharedObject } = require('shared-space');
 const myObject = new SharedObject({
  initial: 'data'
 });
@@ -34,7 +34,7 @@ setTimeout(() => {
 }, 100);
 
 // Worker thread (worker.js)
-const SharedObject = require('shared-space');
+const { SharedObject } = require('shared-space');
 const myObject = new SharedObject();
 // Retrieve its data
 console.log(myObject.get('initial'));   // prints 'data'
@@ -46,7 +46,7 @@ myObject.set('my.inner.key', 'worker');
 
 ```javascript
 const cluster = require('cluster');
-const SharedObject = require('shared-space');
+const { SharedObject } = require('shared-space');
 if(cluster.isMaster) {
     // Initiate main shared object only in master process
     let myObject = new SharedObject({
@@ -83,6 +83,7 @@ Synchronisation is performed between all threads/processes (worker and main), wi
 
 When used with `threads`, the synchronisation process is performed synchronously, while used in `cluster` mode, it is performed asynchronously (using `process.send`)
 
+More examples are in the [example](https://github.com/snupa/node-shared-space/tree/master/example) folder
 
 ### API
 
@@ -100,9 +101,11 @@ If the key itself is an object, it will be merged with the shared object's data,
 #### instance.clear(key)
 Removes the specified key from the SharedObject's data. If no key is specified, the entire data object will be reset.
 
-#### SharedObject.SharedParent
+#### SharedSpace.SharedParent
 The Shared object parent class used in main thread/process
 
-#### SharedObject.SharedChild
+#### SharedSpace.SharedChild
 The Shared object child class used in sub-threads/processes
 
+#### SharedSpace.SharedObject
+either the SharedParent or the SharedChild, depending on the context of the process (parent/child)
