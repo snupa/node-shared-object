@@ -78,10 +78,8 @@ In essence, it performs object synchronisation between workers, by transferring 
 and merging the main data object.
 
 Internally, when used with `threads`, it serializes the data using `bson` and sends/receives Uint8Array objects between workers.
-However, when used with the `cluster` module, it sends direct objects between workers.
+However, when used with the `cluster` module, it sends direct object JSONs between workers.
 Synchronisation is performed between all threads/processes (worker and main), with the `last-update-wins` scenario.
-
-When used with `threads`, the synchronisation process is performed synchronously, while used in `cluster` mode, it is performed asynchronously (using `process.send`)
 
 More examples are in the [example](https://github.com/snupa/node-shared-space/tree/master/example) folder
 
